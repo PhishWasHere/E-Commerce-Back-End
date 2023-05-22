@@ -37,7 +37,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   // create a new tag
   try {
-    const data = await ProductTag.create({
+    const data = await Tag.create({
       tag_name: req.body.tag_name,
     });
     // 200 status code means the request is successful
@@ -51,7 +51,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
   try {
-    const data = await ProductTag.update(
+    const data = await Tag.update(
       {
         tag_name: req.body.tag_name,
       },
@@ -79,7 +79,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
 try {
-  const data = await ProductTag.destroy({
+  const data = await Tag.destroy({
     where: {
       id: req.params.id,
     },
