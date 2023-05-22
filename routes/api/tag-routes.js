@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
      const data = await Tag.findAll({
       include: [{ model: Product }],
     }); 
-    res.status(200).res.json(data);
+    res.status(200).json(data);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => {
       res.status(404).json({ message: 'No tag found with that id!' });
       return;
     }
-    res.status(200).res.json(data);
+    res.status(200).json(data);
   } catch (err) {
   }
 });
@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   // create a new tag
   try {
-    const data = await ProductTag.create({
+    const data = await Tag.create({
       tag_name: req.body.tag_name,
     });
     // 200 status code means the request is successful
@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
   try {
-    const data = await ProductTag.update(
+    const data = await Tag.update(
       {
         tag_name: req.body.tag_name,
       },
@@ -75,11 +75,11 @@ router.put('/:id', async (req, res) => {
 });
 
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
 try {
-  const data = await ProductTag.destroy({
-    where ={
+  const data = await Tag.destroy({
+    where: {
       id: req.params.id,
     },
     });
