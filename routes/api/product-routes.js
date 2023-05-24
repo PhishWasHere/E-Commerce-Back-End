@@ -43,15 +43,16 @@ router.post('/', async (req, res) => {
       price: 200.00,
       stock: 3,
       tagIds: [1, 2, 3, 4]
-    }
+    } //you also need to add category_id or it wont work.
   */
-  Product.create(req.body)
+
 
   try {
     const data = await Product.create({
       product_name: req.body.product_name,
       price: req.body.price,
       stock: req.body.stock,
+      category_id: req.body.category_id,
       tagIds: req.body.tagIds,
     });
 
@@ -69,13 +70,16 @@ router.post('/', async (req, res) => {
     res.status(200).json(data);
   } catch (err) {
     res.status(500).json(err);
+    console.log(err);
   }
    
 });
 
 // update product
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   // update product data
+
+  
   Product.update(req.body, {
     where: {
       id: req.params.id,
