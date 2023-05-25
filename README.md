@@ -10,9 +10,6 @@
   - [Questions](#questions)
 
   ## License
-  ![badge](https://img.shields.io/badge/license-MIT-brightgreen)
-  <br />
-  This application is covered by the MIT license.
 
   ## Description
   SQL backend for a e-commerce app
